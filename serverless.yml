@@ -1,0 +1,35 @@
+service: example
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+  country: ${opt:country}
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: us-west-2
+  environment:
+    baseUrl: http://localhost:800
+
+
+functions:
+  add-users:
+    handler: src/add_user/handler.main
+    events:
+     - http:
+         path: users
+         method: post
+
+  get-users:
+    handler: src/get_user/handler.main
+    events:
+     - http:
+         path: users
+         method: get

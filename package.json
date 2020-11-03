@@ -1,0 +1,15 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "i",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-offline": "^6.8.0"
+  },
+  "scripts": {
+    "start": "sls offline start --useChildProcesses --stage local --country mx"
+  },
+  "author": "",
+  "license": "ISC"
+}
