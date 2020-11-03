@@ -63,3 +63,5 @@ env.yml
 
 # Thundra
 thundra_handlers
+
+.DS_Store
