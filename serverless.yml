@@ -17,8 +17,18 @@ provider:
   region: us-west-2
   environment:
     baseUrl: http://localhost:800
-
-
+  apiKeys:
+    - free:
+        - ${opt:stage}-carrg
+  usagePlan:
+    - free:
+        quota:
+          limit: 10
+          offset: 0
+          period: MONTH
+        throttle:
+          burstLimit: 5
+          rateLimit: 5
 functions:
   add-users:
     handler: src/add_user/handler.main
@@ -26,6 +36,7 @@ functions:
      - http:
          path: users
          method: post
+         private: true
 
   get-users:
     handler: src/get_user/handler.main
@@ -33,3 +44,4 @@ functions:
      - http:
          path: users
          method: get
+         private: true

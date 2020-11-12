@@ -8,7 +8,8 @@
     "serverless-offline": "^6.8.0"
   },
   "scripts": {
-    "start": "sls offline start --useChildProcesses --stage local --country mx"
+    "start": "sls offline start --useChildProcesses --stage local --country mx",
+    "deploy:dev": "sls deploy --stage dev --country mx"
   },
   "author": "",
   "license": "ISC"
