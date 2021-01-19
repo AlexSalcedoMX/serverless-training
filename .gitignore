@@ -57,6 +57,7 @@ env.yml
 /config/env.local
 /config/env.sta
 /config/env.prod
+/config/env.dev
 
 # VS Code
 .vscode
@@ -65,3 +66,5 @@ env.yml
 thundra_handlers
 
 .DS_Store
+
+.dccache

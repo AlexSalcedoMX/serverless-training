@@ -5,10 +5,11 @@
   "main": "i",
   "dependencies": {},
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "serverless-offline": "^6.8.0"
   },
   "scripts": {
-    "start": "sls offline start --useChildProcesses --stage local --country mx",
+    "start": "env-cmd -f ./config/env.local sls offline start --stage local --country mx",
     "deploy:dev": "sls deploy --stage dev --country mx"
   },
   "author": "",

@@ -1,4 +1,4 @@
-service: example
+service: developrz-users-backend
 
 frameworkVersion: '2'
 
@@ -9,34 +9,44 @@ custom:
   serverless-offline:
     httpPort: 4000
   country: ${opt:country}
+  stage: ${opt:stage, 'dev'}
 
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: ${opt:stage, 'dev'}
+  stage: ${self:custom.stage}
   region: us-west-2
+  deploymentBucket:
+    name: ${self:custom.stage}-${self:custom.country}-car-deployments
+    blockPublicAccess: true
   environment:
-    baseUrl: http://localhost:800
-  apiKeys:
-    - free:
-        - ${opt:stage}-carrg
-  usagePlan:
-    - free:
-        quota:
-          limit: 10
-          offset: 0
-          period: MONTH
-        throttle:
-          burstLimit: 5
-          rateLimit: 5
+    BASE_URL: ${env:BASE_URL}
+  # apiKeys:
+  #   - free:
+  #       - ${opt:stage}-carrg
+  # usagePlan:
+  #   - free:
+  #       quota:
+  #         limit: 10
+  #         offset: 0
+  #         period: MONTH
+  #       throttle:
+  #         burstLimit: 5
+  #         rateLimit: 5
+  apiGateway:
+    shouldStartNameWithService: true
+
 functions:
   add-users:
     handler: src/add_user/handler.main
+    description: Crear usarios
+    environment:
+      POST: ${env:POST}
     events:
      - http:
          path: users
          method: post
-         private: true
+        #  private: true
 
   get-users:
     handler: src/get_user/handler.main
@@ -44,4 +54,4 @@ functions:
      - http:
          path: users
          method: get
-         private: true
+        #  private: true
