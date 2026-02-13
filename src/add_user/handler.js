@@ -5,7 +5,8 @@ module.exports.main = async event => {
     statusCode: 200,
     body: {
       message: 'Add user',
-      user: "Alex"
+      user: "Alex",
+      lastName: "Smith"
     }
   })
 };
